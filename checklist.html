@@ -4,7 +4,6 @@
   <meta charset="UTF-8">
   <title>チェックリスト</title>
 
-  <!-- PDF出力用ライブラリ -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
 
   <style>
@@ -29,12 +28,6 @@
       margin-bottom: 15px;
     }
 
-    .title-area input {
-      padding: 8px;
-      width: 300px;
-      font-size: 16px;
-    }
-
     .input-area {
       margin-bottom: 20px;
     }
@@ -47,7 +40,6 @@
 
     input[type="checkbox"] {
       width: auto;
-      padding: 0;
       margin: 0 8px;
       transform: scale(1.1);
     }
@@ -58,12 +50,11 @@
       cursor: pointer;
     }
 
-    ol {
-      padding-left: 25px;
+    #taskList {
       margin-top: 20px;
     }
 
-    li {
+    .task-item {
       margin-bottom: 12px;
       display: flex;
       align-items: center;
@@ -134,7 +125,8 @@
       taskList.innerHTML = "";
 
       tasks.forEach(function(task, index) {
-        const li = document.createElement("li");
+        const item = document.createElement("div");
+        item.className = "task-item";
 
         const numberSpan = document.createElement("span");
         numberSpan.className = "task-number";
@@ -168,12 +160,12 @@
           renderTasks();
         });
 
-        li.appendChild(numberSpan);
-        li.appendChild(checkbox);
-        li.appendChild(span);
-        li.appendChild(deleteButton);
+        item.appendChild(numberSpan);
+        item.appendChild(checkbox);
+        item.appendChild(span);
+        item.appendChild(deleteButton);
 
-        taskList.appendChild(li);
+        taskList.appendChild(item);
       });
     }
 
